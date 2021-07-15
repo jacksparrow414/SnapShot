@@ -24,6 +24,10 @@ const PhotoContextProvider = props => {
   };
   return (
     <PhotoContext.Provider value={{ images, loading, runSearch }}>
+      {/* 
+        拿到该标签内的所有内容
+        文档地址: https://zh-hans.reactjs.org/docs/composition-vs-inheritance.html#containment
+      */}
       {props.children}
     </PhotoContext.Provider>
   );

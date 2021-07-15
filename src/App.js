@@ -11,6 +11,7 @@ class App extends Component {
   handleSubmit = (e, history, searchInput) => {
     e.preventDefault();
     e.currentTarget.reset();
+    // 将输入文字作为url的一部分
     let url = `/search/${searchInput}`;
     history.push(url);
   };
@@ -18,6 +19,11 @@ class App extends Component {
   render() {
     return (
       <PhotoContextProvider>
+        {/* 
+             HashRouter文档
+             https://reactrouter.com/web/api/HashRouter
+             basename 是base url
+         */}
         <HashRouter basename="/SnapScout">
           <div className="container">
             <Route
@@ -42,6 +48,11 @@ class App extends Component {
               <Route path="/beach" render={() => <Item searchTerm="beach" />} />
               <Route path="/bird" render={() => <Item searchTerm="bird" />} />
               <Route path="/food" render={() => <Item searchTerm="food" />} />
+              {/* 
+                调用Search组件实现真正的查询操作, 拿到url中输入的文字是通过Route的props实现的
+                文档地址: https://reactrouter.com/web/api/Route/route-props
+                        https://reactrouter.com/web/api/match
+              */}
               <Route
                 path="/search/:searchInput"
                 render={props => (
